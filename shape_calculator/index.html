@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .cal-bg {
+        background-image: url("img/header.jpg");
+        width: 100%;
+        max-height: 100%;
+        height: 180px;
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .cal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0 / 20%);
+    }
+    .cal-text h1{
+        color: white;
+        text-shadow: 4px 4px 4px #585858;
+    }
+    .cal-area {
+        background: hsl(0, 0%, 10%);
+        color: hsl(0, 0%, 90%);
+        padding: 35px 50px;
+        height: 70vh;
+        width: 100%;
+    }
+    .cal-content-area {
+        position: relative;
+    }
+    .steps {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+    #step-1 {
+        display: block;
+    }
+    #inputsAreaOne, #inputsAreaTwo {
+        display: none;
+    }
+</style>
+</head>
+<body>
+  
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="cal-bg d-flex justify-content-start align-items-end">
+                <div class="cal-overlay"></div>
+                <div class="cal-text">
+                    <h1>Shape Calculator</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="cal-text-area p-3">
+                    <h1 class="mb-4">Welcome to Shape Calculator</h1>
+                    <p><strong>Shape Calculator is an interactive web application. To the right you will find the 3 step application. Follow the instructions in each step. Clicking cancel will take you back to step 1. Enjoy!</strong></p>
+                    <p>A small river named Duden flows by their place and supplies it with the
+                        necessary regelialia. It is a paradisematic country, in which roasted parts of
+                        sentences fly into your mouth.</p>
+                    <p>Even the all-powerful Pointing has no control about the blind texts it is an
+                        almost unorthographic life One day however a small line of blind text by the
+                        name of Lorem Ipsum decided to leave for the far World of Grammar. The
+                        Big Oxmox advised her not to do so, because there were thousands of bad
+                        Commas.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="cal-area">
+                    <div class="cal-content-area">
+                        <div class="steps" id="step-1">
+                            <h3 class="steps-heading mb-4">Step 1 : Select your shape</h3>
+                            <p class="steps-content">Please select the shape that you would like
+                                to calculate the area of and press the
+                                button "Go to step 2"</p>
+                            <div class="input-group align-items-center justify-content-between">
+                                <div class="input-1 inputs">
+                                    <input type="radio" id="rectangle" name="shapes" value="rectangle">
+                                    <label for="rectangle">
+                                        <div class="rectangle-shape">
+                                            <svg width="100" height="50">
+                                                <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="input-2 inputs">
+                                    <input type="radio" id="circle" name="shapes" value="circle">
+                                    <label for="circle">
+                                        <div class="circle-shape">
+                                            <svg height="80" width="80">
+                                                <circle cx="35" cy="35" r="30" stroke="black" stroke-width="3" fill="red" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="input-3 inputs">
+                                    <input type="radio" id="square" name="shapes" value="square">
+                                    <label for="square">
+                                        <div class="square-shape">
+                                            <svg width="100" height="100">
+                                                <rect x="10" y="10" width="75" height="75"
+                                                style="fill:blue;stroke:pink;stroke-width:5;opacity:0.5" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="input-4 inputs">
+                                    <input type="radio" id="ellipse" name="shapes" value="ellipse">
+                                    <label for="ellipse">
+                                        <div class="ellipse-shape">
+                                            <svg height="70" width="100">
+                                                <ellipse cx="50" cy="35" rx="50" ry="25" style="fill:yellow;stroke:purple;stroke-width:2" />
+                                                Sorry, your browser does not support inline SVG.  
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="button" onclick="gotoStep2()" id="next-Step2" class="btn btn-md btn-primary mt-5">Goto Step 2</button>
+                            <div id="result"></div>
+                        </div>
+                        <div class="steps" id="step-2">
+                            <h3 class="steps-heading mb-4">Step 2 : Insert your values</h3>
+                            <p class="steps-content">You have selected a <span class="optionSelected">Circle</span>, please input
+                                the required variables.</p>
+                            <div id="inputsAreaOne">
+                                <div class="mb-3 mt-3">
+                                    <label for="value1" class="form-label">Input 1:</label>
+                                    <input type="text" class="form-control" id="value1" placeholder="Enter First Value" >
+                                </div>
+                            </div>
+                            <div id="inputsAreaTwo">
+                                <div class="mb-3 mt-3">
+                                    <label for="value1" class="form-label">Input 1:</label>
+                                    <input type="text" class="form-control" id="value2" placeholder="Enter First Value">
+                                </div>
+                              
+                                <div class="mb-3 mt-3">
+                                    <label for="value2" class="form-label">Input 2:</label>
+                                    <input type="text" class="form-control" id="value3" placeholder="Enter Second Value">
+                                </div>
+                            </div>
+                            <div class="btns-group d-flex align-items-center">
+                                <button type="button" id="next-Step3" class="btn btn-md btn-primary mt-5">Goto Step 3</button>
+                                    <span class="mt-5 mx-3">Or</span>
+                                <button type="button" class="btn btn-md btn-dark mt-5 jumpStep1" onclick="location.reload();">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="steps" id="step-3">
+                            <h3 class="steps-heading mb-4">Step 3 : Your results</h3>
+                            <p id="steps-content">You have calculated the area of a <span class="optionSelected">Circle</span>
+                                with a diameter of 24. Below is your result:</p>
+
+                                <h2 id="resultOfShape">The Area is 240</h2>
+                            
+                            <button type="button" class="btn btn-md btn-dark mt-5 jumpStep1" onclick="location.reload();">Start Over</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+    function gotoStep2() {
+            let shapeSelected = document.querySelector('input[name="shapes"]:checked') ;
+            let nextStep1 = document.getElementById('step-1');
+            let nextStep2 = document.getElementById('step-2');
+            let nextStep3 = document.getElementById('step-3');
+            let optionSelected = document.querySelector("span.optionSelected");
+            let inputsAreaOne = document.getElementById("inputsAreaOne");
+            let inputsAreaTwo = document.getElementById("inputsAreaTwo");
+            let input1 = document.getElementById("value1");
+            let input2 = document.getElementById("value2");
+            let input3 = document.getElementById("value3");
+            let resultOfShape = document.getElementById("resultOfShape");
+            let content = document.getElementById("steps-content");
+
+              
+                if(shapeSelected) {
+                    let resultShape = shapeSelected.value;
+                    nextStep1.style.display = "none";
+                    nextStep2.style.display = "block";
+                    console.log(resultShape);
+                    optionSelected.innerHTML = resultShape;
+
+                    if(resultShape == "rectangle") {
+                        inputsAreaTwo.style.display = "block";
+                        $("#next-Step3").on("click",function(){
+                            if(input2.value == "" || input2.value == null && input3.value == "" || input3.value == null) {
+                                alert("Input Can't Be Empty");
+                            } else if(isNaN(input2.value) || isNaN(input3.value)) {
+                                    alert("enter number only");
+                                }
+                                else {
+                                    console.log (input2.value+ " "+input3.value);
+                                    let res = rectangle(input2.value, input3.value);
+                                    console.log(res);
+                                    nextStep2.style.display = "none";
+                                    nextStep3.style.display = "block";
+                                    content.innerText = "You have calculated the area of a "+resultShape+ " with a length: "+input2.value+ " and breadth: "+input3.value+" . Below is your result:";
+                                    resultOfShape.innerText = "The Are is "+res;
+                                }
+                        });
+                        
+                    }
+
+                    if(resultShape == "square") {
+                        inputsAreaOne.style.display = "block";
+                        $("#next-Step3").on("click",function(){
+                            if(input1.value == "" || input1.value == null) {
+                                alert("Input Can't Be Empty");
+                            } else if(isNaN(input1.value)) {
+                                    alert("enter number only");
+                                }
+                                else {
+                                    console.log (input1.value);
+                                    let res = square(input1.value);
+                                    console.log(res);
+                                    nextStep2.style.display = "none";
+                                    nextStep3.style.display = "block";
+                                    content.innerText = "You have calculated the area of a "+resultShape+ " with a size: "+input1.value+" . Below is your result:";
+                                    resultOfShape.innerText = "The Are is "+res;
+                                }
+                        });
+                    }
+
+                    if(resultShape == "circle") {
+                        inputsAreaOne.style.display = "block";
+                        $("#next-Step3").on("click",function(){
+                            if(input1.value == "" || input1.value == null) {
+                                alert("Input Can't Be Empty");
+                            } else if(isNaN(input1.value)) {
+                                    alert("enter number only");
+                                }
+                                else {
+                                    console.log (input1.value);
+                                    let res = circle(input1.value);
+                                    console.log(res);
+                                    nextStep2.style.display = "none";
+                                    nextStep3.style.display = "block";
+                                    content.innerText = "You have calculated the area of a "+resultShape+ " with a radius: "+input1.value+" . Below is your result:";
+                                    resultOfShape.innerText = "The Are is "+res;
+                                }
+                        });
+                    }
+
+                    if(resultShape == "ellipse") {
+                        inputsAreaTwo.style.display = "block";
+                        $("#next-Step3").on("click",function(){
+                            if(input2.value == "" || input2.value == null && input3.value == "" || input3.value == null) {
+                                alert("Input Can't Be Empty");
+                            } else if(isNaN(input2.value) || isNaN(input3.value)) {
+                                    alert("enter number only");
+                                }
+                                else {
+                                    console.log (input2.value+ " "+input3.value);
+                                    let res = ellipse(input2.value, input3.value);
+                                    console.log(res);
+                                    nextStep2.style.display = "none";
+                                    nextStep3.style.display = "block";
+                                    content.innerText = "You have calculated the area of a "+resultShape+ " with a X: "+input2.value+ " and Y: "+input3.value+" . Below is your result:";
+                                    resultOfShape.innerText = "The Are is "+res;
+                                }
+                        });
+                    }
+                    
+
+                } 
+                else {
+                    alert("select any one shape first!!!!")
+                } 
+            
+    }
+
+    function rectangle(l,b) {
+        let rectangleShape = l * b;
+        return rectangleShape;
+    }
+
+    function square(s) {
+        let squareShape = s * s;
+        return squareShape;
+    }
+
+    function circle(r) {
+        let circleShape = Math.PI * r * r;
+        return circleShape.toFixed(2);
+    }
+
+    function ellipse(x,y) {
+        let ellipseShape = Math.PI * x * y;
+        return ellipseShape.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
